@@ -29,11 +29,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/pessoas/{pessoaId}"
     };
 
+    private static final String[] PRIVATE_LIST = {
+            "/produtos",
+            "/produtos/{produtoId}",
+    };
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/produtos")
+                .antMatchers(HttpMethod.GET, PRIVATE_LIST)
+                .hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST, PRIVATE_LIST)
+                .hasRole("ADMIN")
+                .antMatchers(HttpMethod.PUT, PRIVATE_LIST)
+                .hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, PRIVATE_LIST)
                 .hasRole("ADMIN")
                 .antMatchers("/authenticate").permitAll()
                 .antMatchers(HttpMethod.GET, AUTH_LIST).permitAll()

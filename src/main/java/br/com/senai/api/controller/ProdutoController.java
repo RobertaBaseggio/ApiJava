@@ -1,6 +1,7 @@
 package br.com.senai.api.controller;
 
 import br.com.senai.api.assembler.ProdutoAssembler;
+import br.com.senai.api.model.PessoaDTO;
 import br.com.senai.api.model.ProdutoDTO;
 import br.com.senai.api.model.input.ProdutoInputDTO;
 import br.com.senai.domain.model.Produto;

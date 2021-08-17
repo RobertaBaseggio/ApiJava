@@ -81,6 +81,9 @@ public class PessoaController {
         }
 
         pessoa.setCodigo(pessoaId);
+        pessoa.getUsuario().setSenha(
+                new BCryptPasswordEncoder()
+                        .encode(pessoa.getUsuario().getSenha()));
         pessoa = pessoaRepository.save(pessoa);
 
         return ResponseEntity.ok(pessoa);
